@@ -8,6 +8,8 @@ const session = require("express-session");
 const flash = require("connect-flash");
 //import mongoose
 const mongoose = require("mongoose");
+
+const cors = require("cors");
 mongoose.connect(
   "mongodb+srv://codeathome:bwamern@cluster0.tyuud.mongodb.net/db_comfroom?retryWrites=true&w=majority",
   {
@@ -54,6 +56,7 @@ app.use("/api/v1/member", apiRouter);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use(cors());
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
