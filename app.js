@@ -6,10 +6,10 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
-//import mongoose
-const mongoose = require("mongoose");
 
 const cors = require("cors");
+//import mongoose
+const mongoose = require("mongoose");
 mongoose.connect(
   "mongodb+srv://codeathome:bwamern@cluster0.tyuud.mongodb.net/db_comfroom?retryWrites=true&w=majority",
   {
