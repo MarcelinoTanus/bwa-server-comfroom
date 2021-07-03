@@ -6,11 +6,12 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
-
+var app = express();
 //import mongoose
 const mongoose = require("mongoose");
 
 const cors = require("cors");
+app.use(cors());
 
 mongoose.connect(
   "mongodb+srv://codeathome:bwamern@cluster0.tyuud.mongodb.net/db_comfroom?retryWrites=true&w=majority",
@@ -28,8 +29,6 @@ var usersRouter = require("./routes/users");
 const adminRouter = require("./routes/admin");
 const apiRouter = require("./routes/api");
 const { access } = require("fs");
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -56,17 +55,6 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use(cors());
-
-app.use((req, res, next) => {
-  req.setHeader("Acces-Control-Allow-Origin", "*");
-  req.setHeader(
-    "Acces-Control-Allow-Origin",
-    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-  );
-  req.setHeader("Acces-Control-Allow-Origin", "Content-Type");
-  next();
-});
 
 // admin
 app.use("/admin", adminRouter);
